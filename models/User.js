@@ -1,6 +1,12 @@
 var Sequelize = require('sequelize')
 
 var attributes = {
+  id:{
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -15,10 +21,10 @@ var attributes = {
       isEmail: true
     }
   },
-  firstName: {
+  firstname: {
     type: Sequelize.STRING,
   },
-  lastName: {
+  lastname: {
     type: Sequelize.STRING,
   },
   password: {

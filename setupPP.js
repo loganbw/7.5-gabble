@@ -21,6 +21,7 @@ module.exports = function(app) {
         var hashedPassword = bcrypt.hashSync(password, user.salt)
 
         if (user.password === hashedPassword) {
+          console.log("test");
           return done(null, user)
         }
 
@@ -30,7 +31,9 @@ module.exports = function(app) {
   ))
 
   passport.serializeUser(function(user, done) {
-    done(null, user.id)
+    console.log("test");
+
+    done(null, user.username)
   })
 
   passport.deserializeUser(function(id, done) {
@@ -41,9 +44,10 @@ module.exports = function(app) {
     }).then(function (user) {
       if (user == null) {
         done(new Error('Wrong user id.'))
+      } else{
+        console.log("user deserialized")
+        done(null, user)
       }
-
-      done(null, user)
     })
   })
-}
+ }

@@ -1,5 +1,11 @@
 var passport = require('passport'),
     signupController = require('./controllers/signup.js')
+    loginController = require('./controllers/login.js')
+    User = require('./models/User.js')
+
+
+
+
     module.exports = function(express) {
       var router = express.Router()
 
@@ -13,14 +19,41 @@ var passport = require('passport'),
       router.get('/signup', signupController.show)
       router.post('/signup', signupController.signup)
 
-      router.post('/login', passport.authenticate('local', {
-          successRedirect: '/dashboard',
-          failureRedirect: '/',
-          failureFlash: true
-      }))
 
+      //router.post('/login', passport.authenticate('local'), function(req, res) {
+      //    console.log( "logged in: " + req.user.username)
+      //    req.session.uname = req.user.username;
+      //    res.redirect('/');
+      //});
+      router.get('/failedlogin', function(req, res){
+        req.flash('info', 'Hi there!');
+        res.locals.message = "bbb";// req.flash('Login Failed');
+        console.log("failed login");
+        res.redirect('/login');
+      });
+      router.post('/login', passport.authenticate('local',
+          {
+              failureRedirect:'/login',
+              failureFlash:true
+          }), function(req, res) {
+            req.session.uname = req.user.username;
+            res.redirect('/');
+      });
+      router.get('/login', loginController.show)
       router.get('/', function(req, res) {
-        res.render('signup')
+        // if (typeof req.isAuthenticated !== 'undefined')
+        // {
+        //   if( req.isAuthenticated){
+        //     console.log("authenticated")
+        //     if( typeof req.user !== 'undefined'){
+        //       console.log(req.user.username)
+        //       res.render('index', { username: req.user })
+        //     }else{
+        //       res.render('index')
+        //     }
+        //   }
+        // }
+        res.render('index',{ username: req.session.uname })
       })
 
       router.get('/dashboard', isAuthenticated, function(req, res) {
@@ -29,6 +62,7 @@ var passport = require('passport'),
 
       router.get('/logout', function(req, res) {
         req.logout()
+        req.session.uname = null;
         res.redirect('/')
       })
 

@@ -1,1 +1,30 @@
-<h1>Sign up to GABBLE!</h1>
+
+<header>
+  <span><a href="/">Gabble</a></span>
+  <span><a href="/creategab">Create a gab</a></span>
+  {{#unless username }}
+  <span><a href="/login">Log in!</a></span>
+  {{/unless}}
+  {{#if username }}
+  <span>{{username}}</span>
+  {{/if}}
+  {{#unless username }}
+  <span><a href="/signup">Sign up!</a></span>
+  {{/unless}}
+  {{#if username }}
+  <span><a href="/logout">Log Out</a></span>
+  {{/if}}
+</header>
+<!-- loops over each gabble made and adds a like button and dislike button -->
+<!-- if the user made the gabble allow him to delete it from the index page -->
+{{#each gabble}}
+  <div class="gabbles">
+    <!-- should contain gabbles created date and how many likes it has -->
+  </div>
+<form class="/like" action="index.html" method="post">
+  <input type="submit" name="" value="like">
+</form>
+<form class="/dislike" action="index.html" method="post">
+  <input type="submit" value="dislike">
+</form>
+{{/each}}
