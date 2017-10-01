@@ -1,7 +1,7 @@
 var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
-    bcrypt = require('bcrypt'),
-    Model = require('./models/models.js')
+  LocalStrategy = require('passport-local').Strategy,
+  bcrypt = require('bcrypt'),
+  Model = require('./models/models.js')
 
 module.exports = function(app) {
   app.use(passport.initialize())
@@ -13,9 +13,11 @@ module.exports = function(app) {
         where: {
           'username': username
         }
-      }).then(function (user) {
+      }).then(function(user) {
         if (user == null) {
-          return done(null, false, { message: 'Incorrect credentials.' })
+          return done(null, false, {
+            message: 'Incorrect credentials.'
+          })
         }
 
         var hashedPassword = bcrypt.hashSync(password, user.salt)
@@ -25,7 +27,9 @@ module.exports = function(app) {
           return done(null, user)
         }
 
-        return done(null, false, { message: 'Incorrect credentials.' })
+        return done(null, false, {
+          message: 'Incorrect credentials.'
+        })
       })
     }
   ))
@@ -41,13 +45,13 @@ module.exports = function(app) {
       where: {
         'id': id
       }
-    }).then(function (user) {
+    }).then(function(user) {
       if (user == null) {
         done(new Error('Wrong user id.'))
-      } else{
+      } else {
         console.log("user deserialized")
         done(null, user)
       }
     })
   })
- }
+}

@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize')
 
 var attributes = {
-  id:{
+  id: {
     autoIncrement: true,
     primaryKey: true,
     type: Sequelize.INTEGER

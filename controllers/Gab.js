@@ -1,4 +1,3 @@
-
 var Model = require('../models/models.js')
 
 module.exports.show = function(req, res) {

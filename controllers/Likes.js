@@ -1,16 +1,12 @@
 var Model = require('../models/models.js')
 
-
-
 module.exports.getLikes = function(req, res) {
 
   Model.Likes.findAll().then(function(likes) {
     console.log("got likes");
-
     // projects will be an array of all Project instances
   })
 }
-
 module.exports.create = function(req, res) {
   var username = req.session.uname
 
@@ -26,8 +22,12 @@ module.exports.create = function(req, res) {
   }).then(result => {
 
     if (result.count == 0) {
-//alter gabs table value for likecount
-      Model.Gabs.increment('likecount', { where: { id: req.body.gabid}}); 
+      //alter gabs table value for likecount
+      Model.Gabs.increment('likecount', {
+        where: {
+          id: req.body.gabid
+        }
+      });
 
       var newLike = {
         likeusername: username,
@@ -42,12 +42,9 @@ module.exports.create = function(req, res) {
         res.redirect('/')
       })
     } else {
-      console.log( "You Already Liked This Post")
+      console.log("You Already Liked This Post")
       req.flash('info', "You already liked This Post.")
       res.redirect('/')
     }
-
-
   });
-
 }

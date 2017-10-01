@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize')
 
 var attributes = {
-  id:{
+  id: {
     autoIncrement: true,
     primaryKey: true,
     type: Sequelize.INTEGER
@@ -18,9 +18,9 @@ var attributes = {
   gab: {
     type: Sequelize.STRING,
   },
-  likecount:{
-      type: Sequelize.INTEGER,
-      defaultValue: 0,
+  likecount: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
   },
   createdat: {
     type: Sequelize.DATE,

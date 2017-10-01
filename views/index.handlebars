@@ -1,18 +1,17 @@
-
 <header>
   <span><a href="/">Gabble</a></span>
   {{#unless user }}
-  <span><a href="/login">Log in!</a></span>
+    <span><a href="/login">Log in!</a></span>
   {{/unless}}
   {{#if user }}
-  <span>{{user}}</span>
+    <span>{{user}}</span>
   {{/if}}
   {{#unless user }}
-  <span><a href="/signup">Sign up!</a></span>
+    <span><a href="/signup">Sign up!</a></span>
   {{/unless}}
   {{#if user }}
-  <span><a href="/creategab">Create a gab</a></span>
-  <span><a href="/logout">Log Out</a></span>
+    <span><a href="/creategab">Create a gab</a></span>
+    <span><a href="/logout">Log Out</a></span>
   {{/if}}
 </header>
 <!-- loops over each gabble made and adds a like button and dislike button -->
@@ -20,21 +19,21 @@
 {{#each gabs}}
   <div class="gabbles">
     User: {{this.username}}
-    <br>
-    Gab: <a href="/details?gabid={{this.id}}">{{this.gab}}</a>
-    Date: {{#form_dt this.createdat}}{{/form_dt}}
-    Likes: {{#likes_fm this.likecount}}{{/likes_fm}}
+    <br> Gab: <a href="/details?gabid={{this.id}}">{{this.gab}}</a> Date:
+    {{#form_dt this.createdat}}{{/form_dt}}
+    Likes:
+    {{#likes_fm this.likecount}}{{/likes_fm}}
 
     <!-- should contain gabbles created date and how many likes it has -->
   </div>
   {{#if (is_eq this.username ../user)}}
-  <form class="" action="/deletegab" method="post">
-    <input type="submit" name="" value="delete">
-    <input type="hidden" name="gabid" value={{this.id}}>
-  </form>
+    <form class="" action="/deletegab" method="post">
+      <input type="submit" name="" value="delete">
+      <input type="hidden" name="gabid" value= {{this.id}}>
+    </form>
   {{/if}}
-<form class="" action="/likegab" method="post">
-  <input type="submit" name="" value="like">
-  <input type="hidden" name="gabid" value={{this.id}}>
-</form>
+  <form class="" action="/likegab" method="post">
+    <input type="submit" name="" value="like">
+    <input type="hidden" name="gabid" value= {{this.id}}>
+  </form>
 {{/each}}

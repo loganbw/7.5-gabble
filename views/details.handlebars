@@ -1,23 +1,20 @@
-
-
 <header>
   <span><a href="/">Gabble</a></span>
   {{#unless user }}
-  <span><a href="/login">Log in!</a></span>
+    <span><a href="/login">Log in!</a></span>
   {{/unless}}
   {{#if user }}
-  <span>{{user}}</span>
+    <span>{{user}}</span>
   {{/if}}
   {{#unless user }}
-  <span><a href="/signup">Sign up!</a></span>
+    <span><a href="/signup">Sign up!</a></span>
   {{/unless}}
   {{#if user }}
-  <span><a href="/creategab">Create a gab</a></span>
-  <span><a href="/logout">Log Out</a></span>
+    <span><a href="/creategab">Create a gab</a></span>
+    <span><a href="/logout">Log Out</a></span>
   {{/if}}
 </header>
-User: {{gab.username}}
-Text: {{gab.gab}}
+User: {{gab.username}} Text: {{gab.gab}}
 <h3>Liked By</h3>
 {{#each likes}}
   <div class="likes">

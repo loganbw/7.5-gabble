@@ -1,5 +1,5 @@
 var UserMeta = require('./User.js'),
-    connection = require('../sequelize.js')
+  connection = require('../sequelize.js')
 var GabMeta = require('./Gabble.js')
 var LikesMeta = require('./Likes.js')
 
